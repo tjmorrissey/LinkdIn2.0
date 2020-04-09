@@ -16,9 +16,11 @@ public class Job {
 	@Column(name = "ID")
 	private int id;
 	@Column(name = "POSITION")
-	private String brand;
+	private String position;
 	@Column(name = "SALARY")
-	private String color;
+	private String salary;
+	@Column(name = "JOBDESC")
+	private String jobdesc;
 
 	public Job() {
 		// TODO Auto-generated constructor stub
@@ -32,33 +34,43 @@ public class Job {
 		this.id = id;
 	}
 
-	public String getBrand() {
-		return brand;
+	public String getPosition() {
+		return position;
 	}
 
-	public void setBrand(String brand) {
-		this.brand = brand;
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
-	public String getColor() {
-		return color;
+	public String getSalary() {
+		return salary;
 	}
 
-	public void setColor(String color) {
-		this.color = color;
+	public void setSalary(String salary) {
+		this.salary = salary;
 	}
 
-	public Job(int id, String brand, String color) {
+	public String getJobdesc() {
+		return jobdesc;
+	}
+
+	public void setJobdesc(String jobdesc) {
+		this.jobdesc = jobdesc;
+	}
+
+	public Job(int id, String position, String salary, String jobdesc) {
 		super();
 		this.id = id;
-		this.brand = brand;
-		this.color = color;
+		this.position = position;
+		this.salary = salary;
+		this.jobdesc = jobdesc;
 	}
 
 	@Override
 	public String toString() {
-		return "Job [id=" + id + ", brand=" + brand + ", color=" + color + "]";
+		return "Job [id=" + id + ", position=" + position + ", salary=" + salary + ", jobdesc=" + jobdesc + "]";
 	}
+
 	
 	
 
