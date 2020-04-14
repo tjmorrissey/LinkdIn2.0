@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,17 +15,12 @@ import javax.persistence.Table;
 public class Employer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
-	private int id;
-	@Column(name = "EMPLOYER")
-	private String employer;
-	@Column(name = "POSITION")
-	private String position;
-	@Column(name="LISTOFEMPLOYEES")
-	private List listofemployees;
-	@Column(name="DATE")
-	private Date date;
-	
+	@Column(name = "EMPLOYERID")
+	private int employerId;
+	@Column(name = "COMPANY")
+	private String company;
+	@Column(name = "LISTOFJOBS")
+	private List<Job> listOfJobs;
 	
 
 	public Employer() {
@@ -33,84 +28,50 @@ public class Employer {
 	}
 
 
-
-	public int getId() {
-		return id;
+	public int getEmployerId() {
+		return employerId;
 	}
 
 
-
-	public void setId(int id) {
-		this.id = id;
+	public void setEmployerId(int employerId) {
+		this.employerId = employerId;
 	}
 
 
-
-	public String getEmployer() {
-		return employer;
+	public String getCompany() {
+		return company;
 	}
 
 
-
-	public void setEmployer(String employer) {
-		this.employer = employer;
+	public void setCompany(String company) {
+		this.company = company;
 	}
 
 
-
-	public String getPosition() {
-		return position;
+	public List<Job> getListOfJobs() {
+		return listOfJobs;
 	}
 
 
-
-	public void setPosition(String position) {
-		this.position = position;
+	public void setListOfJobs(List<Job> listOfJobs) {
+		this.listOfJobs = listOfJobs;
 	}
 
 
-
-	public List getListofemployees() {
-		return listofemployees;
-	}
-
-
-
-	public void setListofemployees(List listofemployees) {
-		this.listofemployees = listofemployees;
-	}
-
-
-
-	public Date getDate() {
-		return date;
-	}
-
-
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-
-
-	public Employer(int id, String employer, String position, List listofemployees, Date date) {
+	public Employer(String company) {
 		super();
-		this.id = id;
-		this.employer = employer;
-		this.position = position;
-		this.listofemployees = listofemployees;
-		this.date = date;
+		this.company = company;
+		
 	}
-
 
 
 	@Override
 	public String toString() {
-		return "Employer [id=" + id + ", employer=" + employer + ", position=" + position + ", listofemployees="
-				+ listofemployees + ", date=" + date + "]";
+		return "Employer [employerId=" + employerId + ", company=" + company + ", listOfJobs=" + listOfJobs + "]";
 	}
+
 	
+
 	
 
 }

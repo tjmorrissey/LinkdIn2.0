@@ -1,11 +1,20 @@
 package model;
 
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,40 +23,50 @@ public class Job {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "JOBID")
-	private int id;
-	@Column(name = "POSITION")
-	private String position;
-	@Column(name = "SALARY")
-	private String salary;
+	private int jobId;
+	@Column(name = "TITLE")
+	private String title;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "EMPLOYERID")
+	private Employer employerId;
 	@Column(name = "JOBDESC")
 	private String jobdesc;
+
+	/*@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
+	@JoinTable
+	(
+			name="JOB_APPLICANTS", 
+			joinColumns= { @JoinColumn(name="JOBID", referencedColumnName="JOBID") },
+			inverseJoinColumns= { @JoinColumn(name="APPLICANTID", referencedColumnName="JOBID", unique=true) }
+	)
+	private List<Job> jobsAppliedFor;*/
 
 	public Job() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getId() {
-		return id;
+	public int getJobId() {
+		return jobId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setJobId(int jobId) {
+		this.jobId = jobId;
 	}
 
-	public String getPosition() {
-		return position;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setPosition(String position) {
-		this.position = position;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getSalary() {
-		return salary;
+	public Employer getEmployerId() {
+		return employerId;
 	}
 
-	public void setSalary(String salary) {
-		this.salary = salary;
+	public void setEmployerId(Employer employerId) {
+		this.employerId = employerId;
 	}
 
 	public String getJobdesc() {
@@ -57,21 +76,30 @@ public class Job {
 	public void setJobdesc(String jobdesc) {
 		this.jobdesc = jobdesc;
 	}
+/*
+	public List<Job> getJobsAppliedFor() {
+		return jobsAppliedFor;
+	}
 
-	public Job(int id, String position, String salary, String jobdesc) {
+	public void setJobsAppliedFor(List<Job> jobsAppliedFor) {
+		this.jobsAppliedFor = jobsAppliedFor; 
+	}
+	*/
+	public Job(String title, Employer employerId, String jobdesc) {
 		super();
-		this.id = id;
-		this.position = position;
-		this.salary = salary;
+	
+		this.title = title;
+		this.employerId = employerId;
 		this.jobdesc = jobdesc;
+	
 	}
 
 	@Override
 	public String toString() {
-		return "Job [id=" + id + ", position=" + position + ", salary=" + salary + ", jobdesc=" + jobdesc + "]";
+		return "Job [jobId=" + jobId + ", title=" + title + ", employerId=" + employerId + ", jobdesc=" + jobdesc
+				+ ", jobsAppliedFor="  + "]";
 	}
 
-	
 	
 
 }

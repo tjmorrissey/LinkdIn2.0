@@ -11,7 +11,7 @@ import model.Applicant;
 
 public class ApplicantHelper {
 
-	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("ConsoleShoppingList");
+	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("JobPortal");
 
 	public void insertApplicant(Applicant app) {
 		EntityManager em = emfactory.createEntityManager();
@@ -34,8 +34,8 @@ public class ApplicantHelper {
 				"select app from Applicant app where app.fName = :selectedFName and app.lName = :selectedLName",
 				Applicant.class);
 		// Substitute parameter with actual data from the toDelete item
-		typedQuery.setParameter("selectedFName", toDelete.getfName());
-		typedQuery.setParameter("selectedLName", toDelete.getlName());
+		typedQuery.setParameter("selectedName", toDelete.getName());
+		
 
 		// we only want one result
 		typedQuery.setMaxResults(1);

@@ -1,5 +1,6 @@
 package model;
 
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -22,62 +23,27 @@ public class Applicant {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "APPLICANTID")
 	private int applicantId;
-	@Column(name = "FIRSTNAME")
-	private String fName;
-	@Column(name = "LASTNAME")
-	private String lName;
+	@Column(name = "NAME")
+	private String name;
 	@Column(name ="ADDRESS")
-	private Address address;
+	private String address;
 	@Column(name = "EDUCATIONLEVEL")
 	private String educationLevel;
-	@Column(name = "SCHOOLNAME")
-	private String schoolName;
 	
-	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
+	
+	/*@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
 		@JoinTable
 		(
-				name="JOBS_APPLIED_FOR", 
-				joinColumns= { @JoinColumn(name="APPLICANTID", referencedColumnName="APPLICANTID") },
-				inverseJoinColumns= { @JoinColumn(name="JOBID", referencedColumnName="ID", unique=true) }
+				name="HISTORY", 
+				joinColumns= { @JoinColumn(name="EMPLOYERID", referencedColumnName="JOBID") },
+				inverseJoinColumns= { @JoinColumn(name="JOBID", referencedColumnName="JOBID", unique=true) }
 		)
-		private List<Job> jobsAppliedFor;
+		private List<Job> jobsAppliedFor;*/
 
 	public Applicant() {
 		super();
 	}
-	
-	public Applicant(int applicantId, String fName, String lName, Address address, String educationLevel, String schoolName, List<Job> jobsAppliedFor) {
-		super();
-		this.applicantId = applicantId;
-		this.fName = fName;
-		this.lName = lName;
-		this.address = address;
-		this.educationLevel = educationLevel;
-		this.schoolName = schoolName;
-		this.jobsAppliedFor = jobsAppliedFor;
-	}
-	
-	public Applicant(String fName, String lName, Address address, String educationLevel, String schoolName, List<Job> jobsAppliedFor) {
-		super();
-		this.fName = fName;
-		this.lName = lName;
-		this.address = address;
-		this.educationLevel = educationLevel;
-		this.schoolName = schoolName;
-		this.jobsAppliedFor = jobsAppliedFor;
-	}
-	
-	public Applicant(String fName, String lName, Address address, String educationLevel, String schoolName) {
-		super();
-		this.fName = fName;
-		this.lName = lName;
-		this.address = address;
-		this.educationLevel = educationLevel;
-		this.schoolName = schoolName;
-	}
-	
-	
-	
+
 	public int getApplicantId() {
 		return applicantId;
 	}
@@ -86,27 +52,19 @@ public class Applicant {
 		this.applicantId = applicantId;
 	}
 
-	public String getfName() {
-		return fName;
+	public String getName() {
+		return name;
 	}
 
-	public void setfName(String fName) {
-		this.fName = fName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getlName() {
-		return lName;
-	}
-
-	public void setlName(String lName) {
-		this.lName = lName;
-	}
-
-	public Address getAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
@@ -118,29 +76,29 @@ public class Applicant {
 		this.educationLevel = educationLevel;
 	}
 
-	public String getSchoolName() {
-		return schoolName;
-	}
+	//public List<Job> getJobsAppliedFor() {
+		//return jobsAppliedFor;
+	//}
 
-	public void setSchoolName(String schoolName) {
-		this.schoolName = schoolName;
-	}
+	//public void setJobsAppliedFor(List<Job> jobsAppliedFor) {
+	//	this.jobsAppliedFor = jobsAppliedFor;
+	//}
 
-	public List<Job> getJobsAppliedFor() {
-		return jobsAppliedFor;
-	}
-
-	public void setJobsAppliedFor(List<Job> jobsAppliedFor) {
-		this.jobsAppliedFor = jobsAppliedFor;
-	}
-
+	public Applicant(String name,String educationLevel) {
+		super();
+		
+		this.name = name;
+		this.educationLevel = educationLevel;
 	
+	}
+
 	@Override
 	public String toString() {
-		return "Applicant [applicantId=" + applicantId + ", fName=" + fName + ", lName=" + lName + ", address="
-				+ address + ", educationLevel=" + educationLevel + ", schoolName=" + schoolName + ", jobsAppliedFor="
-				+ jobsAppliedFor + "]";
+		return "Applicant [applicantId=" + applicantId + ", name=" + name + ", address=" + address + ", educationLevel="
+				+ educationLevel; // + ", jobsAppliedFor=" + jobsAppliedFor + "]";
 	}
+	
+	
 		
 	
 	
