@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +20,7 @@ public class Employer {
 	private int employerId;
 	@Column(name = "COMPANY")
 	private String company;
-	@Column(name = "LISTOFJOBS")
+	@JoinColumn(name = "LISTOFJOBS")
 	private List<Job> listOfJobs;
 	
 

@@ -1,8 +1,10 @@
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import controller.EmployerHelper;
+import controller.JobHelper;
 import model.Applicant;
 import model.Employer;
 import model.Job;
@@ -23,14 +25,15 @@ public class JobTester {
 		List<Applicant> susansItems = new ArrayList<Applicant>();
 		susansItems.add(app);
 		ldh.insertEmployer(dmacc);
-		
-		/*
-		 * JobHelper susansList = new ListDetails("Susan's Shopping List",
-		 * LocalDate.now(), susan); susansList.setListOfItems(susansItems);
-		 * ldh.insertNewListDetails(susansList); List<ListDetails> allLists =
-		 * ldh.getLists(); for (ListDetails a : allLists) {
-		 * System.out.println(a.toString());
-		 */
-	}
 
+		JobHelper susansList = new JobHelper();
+		susansList.setListOfItems(susansItems);
+		ldh.insertNewListDetails(susansList);
+		List<ListDetails> allLists = ldh.getLists();
+		for (ListDetails a : allLists) {
+			System.out.println(a.toString());
+
+		}
+
+	}
 }
