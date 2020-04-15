@@ -28,18 +28,18 @@ public class Job {
 	private String title;
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "EMPLOYERID")
-	private Employer employerId;
+	private Employer employer;
 	@Column(name = "JOBDESC")
 	private String jobdesc;
 
-	/*@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
 	@JoinTable
 	(
-			name="JOB_APPLICANTS", 
+			name="job_applicants", 
 			joinColumns= { @JoinColumn(name="JOBID", referencedColumnName="JOBID") },
-			inverseJoinColumns= { @JoinColumn(name="APPLICANTID", referencedColumnName="JOBID", unique=true) }
+			inverseJoinColumns= { @JoinColumn(name="APPLICANTID", referencedColumnName="APPLICANTID", unique=true) }
 	)
-	private List<Job> jobsAppliedFor;*/
+	private List<Applicant> jobApplicants;
 
 	public Job() {
 		// TODO Auto-generated constructor stub
@@ -61,12 +61,12 @@ public class Job {
 		this.title = title;
 	}
 
-	public Employer getEmployerId() {
-		return employerId;
+	public Employer getEmployer() {
+		return employer;
 	}
 
-	public void setEmployerId(Employer employerId) {
-		this.employerId = employerId;
+	public void setEmployer(Employer employer) {
+		this.employer = employer;
 	}
 
 	public String getJobdesc() {
@@ -76,28 +76,28 @@ public class Job {
 	public void setJobdesc(String jobdesc) {
 		this.jobdesc = jobdesc;
 	}
-/*
-	public List<Job> getJobsAppliedFor() {
-		return jobsAppliedFor;
+	
+	public List<Applicant> getJobApplicants() {
+		return jobApplicants;
 	}
 
-	public void setJobsAppliedFor(List<Job> jobsAppliedFor) {
-		this.jobsAppliedFor = jobsAppliedFor; 
+	public void setJobApplicants(List<Applicant> jobApplicants) {
+		this.jobApplicants = jobApplicants;
 	}
-	*/
-	public Job(String title, Employer employerId, String jobdesc) {
+
+	public Job(String title, Employer employer, String jobdesc) {
 		super();
 	
 		this.title = title;
-		this.employerId = employerId;
+		this.employer = employer;
 		this.jobdesc = jobdesc;
 	
 	}
 
 	@Override
 	public String toString() {
-		return "Job [jobId=" + jobId + ", title=" + title + ", employerId=" + employerId + ", jobdesc=" + jobdesc
-				+ ", jobsAppliedFor="  + "]";
+		return "Job [jobId=" + jobId + ", title=" + title + ", employerId=" + employer + ", jobdesc=" + jobdesc
+				+ ", jobsAppliedFor="  + jobApplicants + "]";
 	}
 
 	

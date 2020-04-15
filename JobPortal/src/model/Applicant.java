@@ -23,6 +23,8 @@ public class Applicant {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "APPLICANTID")
 	private int applicantId;
+	@Column(name = "USERNAME")
+	private String username;
 	@Column(name = "NAME")
 	private String name;
 	@Column(name ="ADDRESS")
@@ -31,14 +33,14 @@ public class Applicant {
 	private String educationLevel;
 	
 	
-	/*@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
 		@JoinTable
 		(
-				name="HISTORY", 
-				joinColumns= { @JoinColumn(name="EMPLOYERID", referencedColumnName="JOBID") },
+				name="applied_jobs", 
+				joinColumns= { @JoinColumn(name="APPLICANTID", referencedColumnName="APPLICANTID") },
 				inverseJoinColumns= { @JoinColumn(name="JOBID", referencedColumnName="JOBID", unique=true) }
 		)
-		private List<Job> jobsAppliedFor;*/
+		private List<Job> jobsAppliedFor;
 
 	public Applicant() {
 		super();
@@ -50,6 +52,15 @@ public class Applicant {
 
 	public void setApplicantId(int applicantId) {
 		this.applicantId = applicantId;
+	}
+	
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getName() {
@@ -76,19 +87,20 @@ public class Applicant {
 		this.educationLevel = educationLevel;
 	}
 
-	//public List<Job> getJobsAppliedFor() {
-		//return jobsAppliedFor;
-	//}
+	public List<Job> getJobsAppliedFor() {
+		return jobsAppliedFor;
+	}
 
-	//public void setJobsAppliedFor(List<Job> jobsAppliedFor) {
-	//	this.jobsAppliedFor = jobsAppliedFor;
-	//}
+	public void setJobsAppliedFor(List<Job> jobsAppliedFor) {
+		this.jobsAppliedFor = jobsAppliedFor;
+	}
 
-	public Applicant(String name,String educationLevel) {
+	public Applicant(String username, String name, String educationLevel, String address) {
 		super();
-		
+		this.username = username;
 		this.name = name;
 		this.educationLevel = educationLevel;
+		this.address = address;
 	
 	}
 
