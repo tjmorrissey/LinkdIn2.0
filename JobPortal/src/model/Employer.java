@@ -20,8 +20,6 @@ public class Employer {
 	private int employerId;
 	@Column(name = "COMPANY")
 	private String company;
-	@JoinColumn(name = "LISTOFJOBS")
-	private List<Job> listOfJobs;
 	
 
 	public Employer() {
@@ -49,15 +47,6 @@ public class Employer {
 	}
 
 
-	public List<Job> getListOfJobs() {
-		return listOfJobs;
-	}
-
-
-	public void setListOfJobs(List<Job> listOfJobs) {
-		this.listOfJobs = listOfJobs;
-	}
-
 
 	public Employer(String company) {
 		super();
@@ -68,7 +57,7 @@ public class Employer {
 
 	@Override
 	public String toString() {
-		return "Employer [employerId=" + employerId + ", company=" + company + ", listOfJobs=" + listOfJobs + "]";
+		return "Employer [employerId=" + employerId + ", company=" + company + "]";
 	}
 
 	

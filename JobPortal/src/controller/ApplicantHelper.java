@@ -67,15 +67,15 @@ public class ApplicantHelper {
 		em.close();
 	}
 
-	public List<Applicant> searchForApplicantByLastName(String lastName) {
+	public Applicant searchForApplicantByUsername(String username) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Applicant> typedQuery = em.createQuery("select app from Applicant app where app.fName = :selectedLastName", Applicant.class);
-		typedQuery.setParameter("selectedName", lastName);
-
-		List<Applicant> foundLastName = typedQuery.getResultList();
+		TypedQuery<Applicant> typedQuery = em.createQuery("select app from Applicant app where app.username = :selectedUsername", Applicant.class);
+		typedQuery.setParameter("selectedUsername", username);
+		
+		Applicant found = typedQuery.getSingleResult();
 		em.close();
-		return foundLastName;
+		return found;
 	}
 
 	public List<Applicant> searchForItemByEdLevel(String educationLevel) {
