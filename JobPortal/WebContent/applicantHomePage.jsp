@@ -8,6 +8,8 @@
 <title>Applicant Page</title>
 </head>
 <body>
+<p align="right">"${appicant.username }"</p>
+
 <form action="editAppServlet" method="post">
 Username:  ${applicant.username} <br>
 Full Name: ${applicant.name}	 <br>
@@ -18,7 +20,22 @@ Education Level: ${applicant.educationLevel} <br>
 <input type="submit" value="Update Information">
 </form>
 
-
+<form action="navigateAppJobListServlet">
+<h4>Jobs Applied For:</h4>
+<table>
+	<c:forEach var="jobsAppliedFor" items="${applicant.jobsAppliedFor }">
+	<tr>
+		<td> ${jobsAppliedFor.title } </td>
+	</tr>
+	<tr>	
+		<td> ${jobsAppliedFor.employer.company } </td>
+	</tr>
+	<tr>
+		<td> ${jobsAppliedFor.jobdesc } </td>
+	</tr>
+	</c:forEach>
+	</table>
+</form>
 
 </body>
 </html>

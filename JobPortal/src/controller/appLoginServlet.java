@@ -40,7 +40,11 @@ public class appLoginServlet extends HttpServlet {
 		
 		request.setAttribute("applicant", app);
 		
-		if(app.getUsername().isEmpty()) {
+		if(app.getUsername().equalsIgnoreCase("e")) {
+			
+			String noApplicant = "There is no Applicant with this Username, please try again. or Create New Applicant.";
+			
+			request.setAttribute("errorCode", noApplicant);
 			path = "/index.jsp";
 		}
 		
