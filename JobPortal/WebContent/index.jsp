@@ -10,6 +10,8 @@
 <body>
 <h2>Login</h2>
 
+<p style="color:red">${errorCode }</p>
+
 <h4>Applicant Login</h4>
 <form action = "appLoginServlet" method ="post">
 Username: <input type="text" name="username"> <br>
@@ -22,7 +24,7 @@ Password: <input type="password" name="userPassword"> <br>
 <h4>Company Login</h4>
 <form action = "employerLoginServlet" method ="post">
 Company Name: <input type="text" name="username"> <br>
-Password: <input type="password" name="userPassword"> <br>
+Password: <input type="password" name="compPassword"> <br>
 <input type="submit" value="Login as Company">
 </form>
 <br>

@@ -31,10 +31,10 @@ public class ApplicantHelper {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		TypedQuery<Applicant> typedQuery = em.createQuery(
-				"select app from Applicant app where app.fName = :selectedFName and app.lName = :selectedLName",
+				"select app from Applicant app where app.username = :selectedUsername",
 				Applicant.class);
 		// Substitute parameter with actual data from the toDelete item
-		typedQuery.setParameter("selectedName", toDelete.getName());
+		typedQuery.setParameter("selectedUsername", toDelete.getUsername());
 		
 
 		// we only want one result
@@ -73,12 +73,22 @@ public class ApplicantHelper {
 		TypedQuery<Applicant> typedQuery = em.createQuery("select app from Applicant app where app.username = :selectedUsername", Applicant.class);
 		typedQuery.setParameter("selectedUsername", username);
 		
-		Applicant found = typedQuery.getSingleResult();
+		typedQuery.setMaxResults(1);			
+			
+		Applicant found;
+		
+		try {
+		found = typedQuery.getSingleResult();
+		}
+		catch(Exception e) {
+			found = new Applicant("e", "e", "e", "e");
+		}
 		em.close();
+		
 		return found;
 	}
 
-	public List<Applicant> searchForItemByEdLevel(String educationLevel) {
+	public List<Applicant> searchForApplicantByEdLevel(String educationLevel) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		TypedQuery<Applicant> typedQuery = em.createQuery("select app from Applicant app where app.educationLevel = :selectedEdLevel", Applicant.class);

@@ -34,16 +34,32 @@ public class createNewAppServlet extends HttpServlet {
 		String address = request.getParameter("address");
 		String edLevel = request.getParameter("educationLevel");
 		
-		Applicant app = new Applicant(username, name, edLevel, address);
-		
 		ApplicantHelper ah = new ApplicantHelper();
+		
+		Applicant check = ah.searchForApplicantByUsername(username);
+		
+		String path = "/index.jsp";
+		
+		//check if the username already exists
+		if(check.getUsername().equalsIgnoreCase(username)) {
+			path = "/createNewApplicant.jsp";
+			
+			String usernameTaken = "This Username is already Taken.  Please choose another.";
+			
+			request.setAttribute("errorCode", usernameTaken);
+			
+		}
+		
+		else {
+		Applicant app = new Applicant(username, name, edLevel, address);
 		
 		ah.insertApplicant(app);
 		
 		System.out.println("New Applicant Created");
 		System.out.println(app.toString());
+		}
 		
-		getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher(path).forward(request, response);
 	}
 
 	/**

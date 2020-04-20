@@ -54,7 +54,6 @@ public class Applicant {
 		this.applicantId = applicantId;
 	}
 	
-
 	public String getUsername() {
 		return username;
 	}
