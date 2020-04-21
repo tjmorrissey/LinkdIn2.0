@@ -50,21 +50,7 @@ public class DBTesterWJoins {
 		
 		
 		
-		/* 
-		Job shampoo = new Job("Manager", dmacc, "Going for a walk and doing nothing.");
-		Applicant app = new Applicant("Susan", "Bachelors");
-		List<Applicant> susansItems = new ArrayList<Applicant>();
-		susansItems.add(app);
 		
-
-		JobHelper susansList = new JobHelper();
-		susansList.setListOfItems(susansItems);
-		ldh.insertNewListDetails(susansList);
-		List<ListDetails> allLists = ldh.getLists();
-		for (ListDetails a : allLists) {
-			System.out.println(a.toString()); 
-
-		} */
 
 	}
 }
